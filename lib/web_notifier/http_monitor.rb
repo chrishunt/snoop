@@ -4,16 +4,24 @@ module WebNotifier
   class HttpMonitor
     UrlRequiredException = Class.new(StandardError)
 
-    attr_reader :url, :notifier, :content, :http_client
+    attr_reader :url, :notifier, :content, :http_client, :interval
     attr_accessor :content
 
     def initialize(
-      url: nil, http_client: HTTParty, notifier: MacOSNotifier.new
+      url: nil, http_client: HTTParty, notifier: MacOSNotifier.new, interval: 1
     )
       raise UrlRequiredException if url.nil?
       @url = url
       @http_client = http_client
       @notifier = notifier
+      @interval = interval
+    end
+
+    def monitor
+      while true
+        notify
+        sleep interval
+      end
     end
 
     def notify
