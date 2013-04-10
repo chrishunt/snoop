@@ -6,7 +6,6 @@ module WebNotifier
 
     def initialize(url: nil)
       raise UrlRequiredException if url.nil?
-
       @url = url
     end
   end
