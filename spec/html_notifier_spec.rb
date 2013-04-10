@@ -1,6 +1,6 @@
-require 'web_notifier/monitor'
+require 'web_notifier/http_monitor'
 
-describe WebNotifier::Monitor do
+describe WebNotifier::HttpMonitor do
   subject { described_class.new(url: url) }
 
   describe '#initialize' do
@@ -18,7 +18,7 @@ describe WebNotifier::Monitor do
       it 'raises an exception' do
         expect {
           subject
-        }.to raise_error WebNotifier::Monitor::UrlRequiredException
+        }.to raise_error WebNotifier::HttpMonitor::UrlRequiredException
       end
     end
   end

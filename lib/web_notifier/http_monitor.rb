@@ -1,5 +1,5 @@
 module WebNotifier
-  class Monitor
+  class HttpMonitor
     UrlRequiredException = Class.new(StandardError)
 
     attr_reader :url
