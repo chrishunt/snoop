@@ -1,6 +1,6 @@
-require 'web_notifier/http_monitor'
+require 'snoop/http_monitor'
 
-describe WebNotifier::HttpMonitor do
+describe Snoop::HttpMonitor do
   subject { described_class.new(url: url) }
 
   let(:url) { 'http://example.com' }
@@ -16,7 +16,7 @@ describe WebNotifier::HttpMonitor do
       it 'raises an exception' do
         expect {
           subject
-        }.to raise_error WebNotifier::HttpMonitor::UrlRequiredException
+        }.to raise_error Snoop::HttpMonitor::UrlRequiredException
       end
     end
   end

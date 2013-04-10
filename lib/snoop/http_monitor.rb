@@ -1,6 +1,6 @@
 require 'httparty'
 
-module WebNotifier
+module Snoop
   class HttpMonitor
     UrlRequiredException = Class.new(StandardError)
 

@@ -1,7 +1,7 @@
 require 'httparty'
 require 'sinatra/base'
 
-module WebNotifier
+module Snoop
   class HttpServer < Sinatra::Base
     set :port, 8001
 
@@ -22,8 +22,8 @@ module WebNotifier
 end
 
 def with_http_server
-  url = "http://localhost:#{WebNotifier::HttpServer.port}"
-  server_thread = Thread.new { WebNotifier::HttpServer.run! }
+  url = "http://localhost:#{Snoop::HttpServer.port}"
+  server_thread = Thread.new { Snoop::HttpServer.run! }
 
   while true
     begin

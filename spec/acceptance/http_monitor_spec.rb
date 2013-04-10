@@ -1,7 +1,7 @@
-require 'web_notifier/http_monitor'
+require 'snoop/http_monitor'
 require 'support/http_server'
 
-describe WebNotifier::HttpMonitor do
+describe Snoop::HttpMonitor do
   class TestNotifier
     attr_reader :notification_count
 
