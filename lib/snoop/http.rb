@@ -1,7 +1,7 @@
 require 'httparty'
 
 module Snoop
-  class HttpMonitor
+  class Http
     UrlRequiredException = Class.new(StandardError)
 
     attr_reader :url, :notifier, :content, :http_client, :interval
