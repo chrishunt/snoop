@@ -3,7 +3,7 @@ require 'support/http_server'
 
 describe Snoop::Http do
   with_http_server do |url|
-    it 'notifies on change event' do
+    it 'notifies when content has changed' do
       snoop = described_class.new(url: "#{url}/dynamic-content")
 
       notification_count = 0
@@ -15,7 +15,7 @@ describe Snoop::Http do
       expect(notification_count).to eq 2
     end
 
-    it 'does not notify when http content has not changed' do
+    it 'does not notify when content has not changed' do
       snoop = described_class.new(url: "#{url}/static-content")
 
       notification_count = 0
