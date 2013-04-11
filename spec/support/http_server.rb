@@ -23,7 +23,7 @@ end
 
 def with_http_server
   url = "http://localhost:#{Snoop::HttpServer.port}"
-  server_thread = Thread.new { Snoop::HttpServer.run! }
+  Thread.new { Snoop::HttpServer.run! }
 
   while true
     begin
