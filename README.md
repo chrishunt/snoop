@@ -134,6 +134,8 @@ print our new follower count to the terminal. When we've reached 500 followers,
 the `Snoop` will stop checking.
 
 ```ruby
+require 'snoop'
+
 snoop = Snoop::Http.new(
   url: 'https://twitter.com/chrishunt',
   css: '[data-element-term="follower_stats"]'
