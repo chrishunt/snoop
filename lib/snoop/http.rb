@@ -1,16 +1,18 @@
 require 'httparty'
+require 'nokogiri'
 
 module Snoop
   class Http
     UrlRequiredException = Class.new(StandardError)
 
-    attr_reader :url, :http_client, :interval, :content
+    attr_reader :url, :css, :http_client, :interval, :content
     attr_accessor :content
 
-    def initialize(url: nil, http_client: HTTParty)
+    def initialize(url: nil, css: nil, http_client: HTTParty)
       raise UrlRequiredException if url.nil?
 
       @url = url
+      @css = css
       @http_client = http_client
     end
 
@@ -30,7 +32,13 @@ module Snoop
     end
 
     def fetch_content
-      http_client.get(url).body
+      content = http_client.get(url).body
+
+      if css
+        content = Nokogiri::HTML(content).css(css).map(&:text).join
+      end
+
+      content
     end
   end
 end

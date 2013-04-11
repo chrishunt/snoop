@@ -3,6 +3,7 @@ PATH
   specs:
     snoop (0.0.2)
       httparty
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
@@ -15,6 +16,7 @@ GEM
       multi_xml (>= 0.5.2)
     multi_json (1.7.2)
     multi_xml (0.5.3)
+    nokogiri (1.5.9)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack

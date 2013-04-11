@@ -26,5 +26,17 @@ describe Snoop::Http do
 
       expect(notification_count).to eq 1
     end
+
+    it 'can target specific html elements' do
+      snoop = described_class.new(url: "#{url}/html-content", css: 'p#message')
+
+      html_content = nil
+
+      snoop.notify do |content|
+        html_content = content
+      end
+
+      expect(html_content).to eq 'Hello Rspec'
+    end
   end
 end

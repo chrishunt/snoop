@@ -18,6 +18,17 @@ module Snoop
     get '/static-content' do
       'same ol stuff'
     end
+
+    get '/html-content' do
+      <<-HTML
+        <html>
+          <body>
+            <h1>Awesome HTML</h1>
+            <p id='message'>Hello Rspec</p>
+          </body>
+        </html>
+      HTML
+    end
   end
 end
 
