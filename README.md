@@ -1,12 +1,12 @@
 # Snoop
-`Snoop` on content, be notified when it changes.
+Snoop on content, be notified when it changes.
 
 ## Usage
 
 Want to know when the next version of JRuby is released? Me too! Let's `Snoop`
-the JRuby homepage and print to the terminal when a new version has been
-posted. In this example, we'll check jruby.org every 5 minutes for a new
-version.
+the [JRuby homepage](http://jruby.org) and print to the terminal when a new
+version has been posted. In this example, we'll check
+[jruby.org](http://jruby.org) every 5 minutes for a new version.
 
 ```ruby
 require 'snoop'
@@ -16,7 +16,7 @@ snoop = Snoop::Http.new(
   css: '#latest_release strong'
 )
 
-snoop.notify delay: 300, while: -> { true } do |version|
+snoop.notify while: -> { true }, delay: 300 do |version|
   puts "New JRuby Version! #{version}"
 end
 ```
@@ -50,9 +50,10 @@ view_count = 0
 
 snoop.notify until: -> { view_count >= 2000 }, delay: 120 do |video_rating|
   current_view_count = video_rating.gsub(/\D/, '').to_i
-  new_view_count = current_view_count - view_count
+  new_view_count     = current_view_count - view_count
+  view_count         = current_view_count
+
   message = "#{current_view_count} views (#{new_view_count} new) on your video!"
-  view_count = current_view_count
 
   puts "Sending notification: #{message}"
   `terminal-notifier -message "#{message}"`
@@ -85,9 +86,9 @@ snoop = Snoop::Http.new(
 
 ### Delay and Count
 
-If you'd like to have your `Snoop` check for new content more than once, you can
-provided a `count`. Alternatively, you can use conditional Snooping (explained
-in next section).
+If you'd like to have your `Snoop` check for new content more than once, you
+can provided a `count`. Alternatively, you can use [Conditional
+Snooping](#conditional-snooping).
 
 The `count` option is most useful for timeboxing a `Snoop`.
 
@@ -110,17 +111,26 @@ recommended to provide a `delay` when using conditional Snooping unless you are
 trying to [DDoS](http://en.wikipedia.org/wiki/Denial-of-service_attack)
 someone.
 
+Here's an example of a daemon `Snoop` that runs forever, checking the JRuby
+homepage every minute for changes.
+
 ```ruby
 require 'snoop'
 
-# Create daemon Snoop that runs forever, checking for changes every minute
 snoop = Snoop::Http.new(url: 'http://jruby.org')
 
-snoop.notify delay: 60, while: -> { true } do |content|
+snoop.notify while: -> { true }, delay: 60 do |content|
   puts content
 end
+```
 
-# Notify when twitter follower count changes, until you've reached 500 followers
+Something else we might want to do is check our
+[Twitter](https://twitter.com/chrishunt) follower count. Here's an example that
+checks twitter every 3 minutes for changes. If the content changes, then we
+print our new follower count to the terminal. When we've reached 500 followers,
+the `Snoop` will stop checking.
+
+```ruby
 snoop = Snoop::Http.new(
   url: 'https://twitter.com/chrishunt',
   css: '[data-element-term="follower_stats"]'
@@ -128,7 +138,7 @@ snoop = Snoop::Http.new(
 
 follower_count = 0
 
-snoop.notify delay: 180, until: -> { follower_count >= 500 } do |content|
+snoop.notify until: -> { follower_count >= 500 }, delay: 180 do |content|
   follower_count = content.gsub(/\D/, '').to_i
   puts "You have #{follower_count} followers!"
 end
