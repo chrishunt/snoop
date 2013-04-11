@@ -1,5 +1,6 @@
 # Snoop
 [![Travis CI](https://travis-ci.org/chrishunt/snoop.png)](https://travis-ci.org/chrishunt/snoop)
+[![Coverage Status](https://coveralls.io/repos/chrishunt/snoop/badge.png?branch=master)](https://coveralls.io/r/chrishunt/snoop)
 [![Code Climate](https://codeclimate.com/github/chrishunt/snoop.png)](https://codeclimate.com/github/chrishunt/snoop)
 
 Snoop on content, be notified when it changes.
