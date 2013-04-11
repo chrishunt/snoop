@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Snoop::VERSION
   spec.authors       = ['Chris Hunt']
   spec.email         = ['c@chrishunt.co']
-  spec.description   = %q{Monitor content for changes}
-  spec.summary       = %q{Monitor content for changes and be notified}
+  spec.description   = %q{Snoop on content, be notified when it changes.}
+  spec.summary       = %q{Snoop on content, be notified when it changes.}
   spec.homepage      = 'https://github.com/chrishunt/snoop'
   spec.license       = 'MIT'
 
