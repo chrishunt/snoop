@@ -9,6 +9,7 @@ module Snoop
 
     def initialize(url: nil, http_client: HTTParty)
       raise UrlRequiredException if url.nil?
+
       @url = url
       @http_client = http_client
     end

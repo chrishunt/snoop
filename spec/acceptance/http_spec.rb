@@ -7,7 +7,10 @@ describe Snoop::Http do
       snoop = described_class.new(url: "#{url}/dynamic-content")
 
       notification_count = 0
-      snoop.notify(delay: 0, times: 2) { notification_count += 1 }
+
+      snoop.notify delay: 0, times: 2 do
+        notification_count += 1
+      end
 
       expect(notification_count).to eq 2
     end
@@ -16,7 +19,10 @@ describe Snoop::Http do
       snoop = described_class.new(url: "#{url}/static-content")
 
       notification_count = 0
-      snoop.notify(delay: 0, times: 2) { notification_count += 1 }
+
+      snoop.notify delay: 0, times: 2 do
+        notification_count += 1
+      end
 
       expect(notification_count).to eq 1
     end
