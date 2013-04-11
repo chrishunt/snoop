@@ -1,5 +1,9 @@
 # Snoop `wip`
-Monitor content for changes and be notified
+Be notified when content changes.
+
+Supported snoops:
+
+  - `HTTP`
 
 ## Installation
 
