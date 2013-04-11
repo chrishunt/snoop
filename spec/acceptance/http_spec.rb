@@ -8,7 +8,7 @@ describe Snoop::Http do
 
       notification_count = 0
 
-      snoop.notify delay: 0, times: 2 do
+      snoop.notify times: 2 do
         notification_count += 1
       end
 
@@ -20,7 +20,7 @@ describe Snoop::Http do
 
       notification_count = 0
 
-      snoop.notify delay: 0, times: 2 do
+      snoop.notify times: 2 do
         notification_count += 1
       end
 
