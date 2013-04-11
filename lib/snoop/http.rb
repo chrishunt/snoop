@@ -40,7 +40,7 @@ module Snoop
         !options.fetch(:until).call
       )
         yield content if content_changed?
-        sleep options[:delay]
+        sleep options.fetch(:delay)
       end
     end
 
