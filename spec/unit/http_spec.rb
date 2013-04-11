@@ -44,7 +44,7 @@ describe Snoop::Http do
     it 'notifies the requested number of times' do
       notification_count = 0
 
-      subject.notify times: 5 do
+      subject.notify count: 5 do
         notification_count += 1
       end
 

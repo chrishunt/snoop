@@ -17,9 +17,9 @@ module Snoop
     end
 
     def notify(
-      delay: 0, times: 1, while_true: -> { false }, while_false: -> { true }
+      delay: 0, count: 1, while_true: -> { false }, while_false: -> { true }
     )
-      while (times -= 1) >= 0 || while_true.call || !while_false.call
+      while (count -= 1) >= 0 || while_true.call || !while_false.call
         yield content if content_changed?
         sleep delay
       end
