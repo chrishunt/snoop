@@ -52,6 +52,16 @@ describe Snoop::Http do
       expect(notification_count).to eq 3
     end
 
+    it 'notifies while an expression is false' do
+      notification_count = 0
+
+      subject.notify while_false: -> { notification_count > 2 }  do
+        notification_count += 1
+      end
+
+      expect(notification_count).to eq 3
+    end
+
     it 'yields the content to the notification block' do
       yielded_content = nil
 

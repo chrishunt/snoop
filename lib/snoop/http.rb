@@ -14,8 +14,10 @@ module Snoop
       @http_client = http_client
     end
 
-    def notify(delay: 0, times: 1, while_true: -> { false })
-      while (times -= 1) >= 0 || while_true.call
+    def notify(
+      delay: 0, times: 1, while_true: -> { false }, while_false: -> { true }
+    )
+      while (times -= 1) >= 0 || while_true.call || !while_false.call
         yield content if content_changed?
         sleep delay
       end
