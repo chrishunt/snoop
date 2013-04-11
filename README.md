@@ -1,4 +1,6 @@
 # Snoop
+[![Code Climate](https://codeclimate.com/github/chrishunt/snoop.png)](https://codeclimate.com/github/chrishunt/snoop)
+
 Snoop on content, be notified when it changes.
 
 ## Usage
