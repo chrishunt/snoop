@@ -5,7 +5,7 @@ module Snoop
   class Http
     UrlRequiredException = Class.new(StandardError)
 
-    attr_reader :url, :css, :http_client, :interval, :content
+    attr_reader :url, :css, :http_client
     attr_accessor :content
 
     def initialize(url: nil, css: nil, http_client: HTTParty)
