@@ -22,30 +22,53 @@ describe Snoop::Http do
   end
 
   describe '#notify' do
-    let(:notifier) { stub }
+    let(:content) { 'abc123' }
+    let(:content_changed?) { true }
 
     before do
       subject.stub(
-        content_changed?: content_changed?,
-        notifier: notifier
+        content: content,
+        content_changed?: content_changed?
       )
     end
 
-    context 'when the content changes' do
-      let(:content_changed?) { true }
+    it 'notifies the requested number of times' do
+      notification_count = 0
 
-      it 'triggers a notification' do
-        notifier.should_receive(:notify)
-        subject.notify
+      subject.notify times: 5 do
+        notification_count += 1
       end
+
+      expect(notification_count).to eq 5
+    end
+
+    it 'notifies while an expression is true' do
+      notification_count = 0
+
+      subject.notify while_true: -> { notification_count < 3 }  do
+        notification_count += 1
+      end
+
+      expect(notification_count).to eq 3
+    end
+
+    it 'yields the content to the notification block' do
+      yielded_content = nil
+
+      subject.notify { |content| yielded_content = content }
+
+      expect(yielded_content).to eq content
     end
 
     context 'when the content does not change' do
       let(:content_changed?) { false }
 
-      it 'does not trigger a notification' do
-        notifier.should_not_receive(:notify)
-        subject.notify
+      it 'does not yield the notification block' do
+        yielded = false
+
+        subject.notify { yielded = true }
+
+        expect(yielded).to be_false
       end
     end
   end

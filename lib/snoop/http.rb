@@ -4,28 +4,20 @@ module Snoop
   class Http
     UrlRequiredException = Class.new(StandardError)
 
-    attr_reader :url, :notifier, :content, :http_client, :interval
+    attr_reader :url, :http_client, :interval, :content
     attr_accessor :content
 
-    def initialize(
-      url: nil, http_client: HTTParty, notifier: MacOSNotifier.new, interval: 1
-    )
+    def initialize(url: nil, http_client: HTTParty)
       raise UrlRequiredException if url.nil?
       @url = url
       @http_client = http_client
-      @notifier = notifier
-      @interval = interval
     end
 
-    def monitor
-      while true
-        notify
-        sleep interval
+    def notify(delay: 0, times: 1, while_true: -> { false })
+      while (times -= 1) >= 0 || while_true.call
+        yield content if content_changed?
+        sleep delay
       end
-    end
-
-    def notify
-      notifier.notify if content_changed?
     end
 
     def content_changed?
@@ -37,8 +29,5 @@ module Snoop
     def fetch_content
       http_client.get(url).body
     end
-  end
-
-  class MacOSNotifier
   end
 end
