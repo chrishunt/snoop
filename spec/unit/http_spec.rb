@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'snoop/http'
 
 describe Snoop::Http do

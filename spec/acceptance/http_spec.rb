@@ -1,5 +1,6 @@
-require 'snoop/http'
+require 'spec_helper'
 require 'support/http_server'
+require 'snoop/http'
 
 describe Snoop::Http do
   with_http_server do |url|
