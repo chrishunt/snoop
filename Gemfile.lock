@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    snoop (0.0.3)
+    snoop (0.0.4)
       httparty
       nokogiri
 
