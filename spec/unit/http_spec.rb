@@ -54,17 +54,17 @@ describe Snoop::Http do
     it 'notifies while an expression is true' do
       notification_count = 0
 
-      subject.notify while_true: -> { notification_count < 3 }  do
+      subject.notify while: -> { notification_count < 3 }  do
         notification_count += 1
       end
 
       expect(notification_count).to eq 3
     end
 
-    it 'notifies while an expression is false' do
+    it 'notifies until an expression is true' do
       notification_count = 0
 
-      subject.notify while_false: -> { notification_count > 2 }  do
+      subject.notify until: -> { notification_count > 2 }  do
         notification_count += 1
       end
 

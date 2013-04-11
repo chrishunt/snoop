@@ -5,6 +5,13 @@ module Snoop
   class Http
     UrlRequiredException = Class.new(StandardError)
 
+    DEFAULT_OPTIONS = {
+      delay: 0,
+      count: 1,
+      while: -> { false },
+      until: -> { true }
+    }
+
     attr_reader :url, :css, :http_client
     attr_accessor :content
 
@@ -16,12 +23,16 @@ module Snoop
       @http_client = http_client
     end
 
-    def notify(
-      delay: 0, count: 1, while_true: -> { false }, while_false: -> { true }
-    )
-      while (count -= 1) >= 0 || while_true.call || !while_false.call
+    def notify(options = {})
+      options = DEFAULT_OPTIONS.merge(options)
+
+      while (
+        (options[:count] -= 1 ) >= 0 ||
+        options[:while].call         ||
+        !options[:until].call
+      )
         yield content if content_changed?
-        sleep delay
+        sleep options[:delay]
       end
     end
 
