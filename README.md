@@ -1,9 +1,9 @@
 # Snoop
-Snoop on content, be notified when it changes.
+`Snoop` on content, be notified when it changes.
 
 ## Usage
 
-Want to know when the next version of JRuby is released? Me too! Let's Snoop
+Want to know when the next version of JRuby is released? Me too! Let's `Snoop`
 the JRuby homepage and print to the terminal when a new version has been
 posted. In this example, we'll check jruby.org every 5 minutes for a new
 version.
@@ -23,7 +23,7 @@ end
 
 ### Mac OS Notifications
 
-Snoop works really well with Mac OS X notifications. Install
+`Snoop` works really well with Mac OS X notifications. Install
 [terminal-notifier](https://github.com/alloy/terminal-notifier) and use it in
 your notify callback.
 
@@ -32,9 +32,9 @@ $ gem install terminal-notifier
 ```
 
 Let's send Mac OS X notifications when people start watching our video on
-[Confreaks](http://www.confreaks.com). We'll use Snoop to check for updates
+[Confreaks](http://www.confreaks.com). We'll use `Snoop` to check for updates
 every 2 minutes and send a notification if we get more views. In this example,
-the Snoop will run until the video has reached 2000 views, then stop.
+the `Snoop` will run until the video has reached 2000 views, then stop.
 
 ```ruby
 require 'snoop'
@@ -63,7 +63,7 @@ end
 
 ### CSS Selectors
 
-Each Snoop requires a URL, but you can also provide a css selector if you're
+Each `Snoop` requires a URL, but you can also provide a css selector if you're
 only interested in part of the page's content. The css selector you provide is
 handed directly to [Nokogiri](http://nokogiri.org), so the same syntax is
 required.
@@ -85,11 +85,11 @@ snoop = Snoop::Http.new(
 
 ### Delay and Count
 
-If you'd like to have your Snoop check for new content more than once, you can
+If you'd like to have your `Snoop` check for new content more than once, you can
 provided a `count`. Alternatively, you can use conditional Snooping (explained
 in next section).
 
-The `count` option is most useful for timeboxing a Snoop.
+The `count` option is most useful for timeboxing a `Snoop`.
 
 ```ruby
 require 'snoop'
@@ -103,7 +103,7 @@ end
 
 ### Conditional Snooping
 
-By default, a Snoop will only check once and return immediately. This is almost
+By default, a `Snoop` will only check once and return immediately. This is almost
 useless since we are interested in change over time. Conditional Snooping is
 possible with the `while` and `until` arguments. It is almost *always*
 recommended to provide a `delay` when using conditional Snooping unless you are
