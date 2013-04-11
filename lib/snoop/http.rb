@@ -5,7 +5,13 @@ module Snoop
   class Http
     UrlRequiredException = Class.new(StandardError)
 
-    DEFAULT_OPTIONS = {
+    DEFAULT_INIT_OPTIONS = {
+      url: nil,
+      css: nil,
+      http_client: HTTParty
+    }
+
+    DEFAULT_NOTIFY_OPTIONS = {
       delay: 0,
       count: 1,
       while: -> { false },
@@ -15,21 +21,23 @@ module Snoop
     attr_reader :url, :css, :http_client
     attr_accessor :content
 
-    def initialize(url: nil, css: nil, http_client: HTTParty)
-      raise UrlRequiredException if url.nil?
+    def initialize(options = {})
+      options = DEFAULT_INIT_OPTIONS.merge options
 
-      @url = url
-      @css = css
-      @http_client = http_client
+      raise UrlRequiredException if options.fetch(:url).nil?
+
+      @url         = options.fetch :url
+      @css         = options.fetch :css
+      @http_client = options.fetch :http_client
     end
 
     def notify(options = {})
-      options = DEFAULT_OPTIONS.merge(options)
+      options = DEFAULT_NOTIFY_OPTIONS.merge options
 
       while (
-        (options[:count] -= 1 ) >= 0 ||
-        options[:while].call         ||
-        !options[:until].call
+        (options[:count] -= 1) >= 0 ||
+        options.fetch(:while).call  ||
+        !options.fetch(:until).call
       )
         yield content if content_changed?
         sleep options[:delay]
