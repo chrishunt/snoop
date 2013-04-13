@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'support/http_server'
 require 'snoop'
 
-describe Snoop::Http do
+describe Snoop::HttpNotifier do
   with_http_server do |url|
     it 'notifies when content has changed' do
       snoop = described_class.new(url: "#{url}/dynamic-content")

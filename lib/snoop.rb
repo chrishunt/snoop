@@ -1,3 +1,3 @@
 require 'snoop/version'
 require 'snoop/notifier'
-require 'snoop/http'
+require 'snoop/http_notifier'

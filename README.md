@@ -15,7 +15,7 @@ version has been posted. In this example, we'll check
 ```ruby
 require 'snoop'
 
-snoop = Snoop::Http.new(
+snoop = Snoop::HttpNotifier.new(
   url: 'http://jruby.org',
   css: '#latest_release strong'
 )
@@ -45,7 +45,7 @@ require 'snoop'
 
 video = '2291-larubyconf2013-impressive-ruby-productivity-with-vim-and-tmux'
 
-snoop = Snoop::Http.new(
+snoop = Snoop::HttpNotifier.new(
   url: "http://www.confreaks.com/videos/#{video}",
   css: '.video-rating'
 )
@@ -77,12 +77,12 @@ required.
 require 'snoop'
 
 # Receive notifications if any part of the page changes
-snoop = Snoop::Http.new(
+snoop = Snoop::HttpNotifier.new(
   url: 'http://jruby.org'
 )
 
 # Receive notifications if just the latest JRuby release changes
-snoop = Snoop::Http.new(
+snoop = Snoop::HttpNotifier.new(
   url: 'http://jruby.org',
   css: '#latest_release strong'
 )
@@ -98,7 +98,7 @@ The `count` option is most useful for timeboxing a `Snoop`.
 
 ```ruby
 require 'snoop'
-snoop = Snoop::Http.new(url: 'http://jruby.org')
+snoop = Snoop::HttpNotifier.new(url: 'http://jruby.org')
 
 # Check JRuby for updates, every minute for 10 minutes
 snoop.notify count: 10, delay: 60 do |content|
@@ -121,7 +121,7 @@ homepage every minute for changes.
 ```ruby
 require 'snoop'
 
-snoop = Snoop::Http.new(url: 'http://jruby.org')
+snoop = Snoop::HttpNotifier.new(url: 'http://jruby.org')
 
 snoop.notify while: -> { true }, delay: 60 do |content|
   puts content
@@ -137,7 +137,7 @@ the `Snoop` will stop checking.
 ```ruby
 require 'snoop'
 
-snoop = Snoop::Http.new(
+snoop = Snoop::HttpNotifier.new(
   url: 'https://twitter.com/chrishunt',
   css: '[data-element-term="follower_stats"]'
 )

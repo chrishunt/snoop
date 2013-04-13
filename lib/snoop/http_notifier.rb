@@ -2,7 +2,7 @@ require 'httparty'
 require 'nokogiri'
 
 module Snoop
-  class Http < Notifier
+  class HttpNotifier < Notifier
     UrlRequiredException = Class.new(StandardError)
 
     DEFAULT_INIT_OPTIONS = {

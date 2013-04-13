@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'snoop/notifier'
-require 'snoop/http'
+require 'snoop/http_notifier'
 
-describe Snoop::Http do
+describe Snoop::HttpNotifier do
   subject { described_class.new(url: url, css: css) }
 
   let(:url) { 'http://example.com' }
@@ -19,7 +19,7 @@ describe Snoop::Http do
       it 'raises an exception' do
         expect {
           subject
-        }.to raise_error Snoop::Http::UrlRequiredException
+        }.to raise_error Snoop::HttpNotifier::UrlRequiredException
       end
     end
 
