@@ -41,7 +41,7 @@ def with_http_server
       HTTParty.get(url)
       break
     rescue Errno::ECONNREFUSED
-      sleep 0.5
+      # Try again
     end
   end
 
