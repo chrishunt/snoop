@@ -1,4 +1,5 @@
 module Snoop
+  # Generic notifier. Create subclasses for different protocols
   class Notifier
     UnimplementedException = Class.new(StandardError)
 
