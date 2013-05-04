@@ -171,10 +171,5 @@ $ gem install snoop
 ```
 
 ## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes, with tests (`git commit -am 'Add some feature'`)
-4. Run the tests (`bundle exec rake`)
-5. Push to the branch (`git push origin my-new-feature`)
-6. Create new Pull Request
+Please see the [Contributing
+Document](https://github.com/chrishunt/snoop/blob/master/CONTRIBUTING.md)
