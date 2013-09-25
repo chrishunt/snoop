@@ -34,9 +34,9 @@ describe Snoop::HttpNotifier do
 
   describe '#fetch_content' do
     before do
-      response = stub('HttpResponse', body: body)
+      response = double('HttpResponse', body: body)
 
-      http_client = stub('HttpClient')
+      http_client = double('HttpClient')
       http_client.should_receive(:get).with(url).and_return(response)
 
       subject.stub(http_client: http_client)
