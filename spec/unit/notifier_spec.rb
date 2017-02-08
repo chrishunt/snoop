@@ -15,7 +15,7 @@ describe Snoop::Notifier do
     let(:content_changed?) { true }
 
     before do
-      subject.stub(
+      allow(subject).to receive_messages(
         content: content,
         content_changed?: content_changed?
       )
@@ -67,7 +67,7 @@ describe Snoop::Notifier do
 
         subject.notify { yielded = true }
 
-        expect(yielded).to be_false
+        expect(yielded).to be false
       end
     end
   end
@@ -75,7 +75,7 @@ describe Snoop::Notifier do
   describe '#content_changed?' do
     it 'updates the content' do
       subject.content = 'abc123'
-      subject.stub(fetch_content: 'def456')
+      allow(subject).to receive_messages(fetch_content: 'def456')
 
       subject.content_changed?
 
@@ -85,22 +85,22 @@ describe Snoop::Notifier do
     context 'when content has changed' do
       before do
         subject.content = 'abc123'
-        subject.stub(fetch_content: 'def456')
+        allow(subject).to receive_messages(fetch_content: 'def456')
       end
 
       it 'returns true' do
-        expect(subject.content_changed?).to be_true
+        expect(subject.content_changed?).to be true
       end
     end
 
     context 'when content has not changed' do
       before do
         subject.content = 'abc123'
-        subject.stub(fetch_content: 'abc123')
+        allow(subject).to receive_messages(fetch_content: 'abc123')
       end
 
       it 'returns false' do
-        expect(subject.content_changed?).to be_false
+        expect(subject.content_changed?).to be false
       end
     end
   end

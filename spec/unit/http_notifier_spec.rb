@@ -37,9 +37,9 @@ describe Snoop::HttpNotifier do
       response = double('HttpResponse', body: body)
 
       http_client = double('HttpClient')
-      http_client.should_receive(:get).with(url).and_return(response)
+      allow(http_client).to receive_messages(get: response)
 
-      subject.stub(http_client: http_client)
+      allow(subject).to receive_messages(http_client: http_client)
     end
 
     let(:body) { 'Awesome HTML' }
